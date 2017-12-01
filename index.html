@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Password</title>
+	</head>
+	<body>
+		<center>
+			<input type="password" id="password" /><br />
+			<img id="img" style="max-width: 100%" />
+		</center>
+		<script type="text/javascript" src="https://cdn.rawgit.com/Caligatio/jsSHA/v2.3.1/src/sha1.js"></script>
+		<script type="text/javascript">
+var img = document.getElementById('img');
+var field = document.getElementById('password');
+function sha1(pass) {
+	var sha = new jsSHA('SHA-1', 'TEXT');
+	sha.update(pass);
+	return sha.getHash('HEX');
+}
+function update() {
+	img.src = "/"+sha1(field.value)+".png";
+}
+update();
+field.oninput = update;
+		</script>
+	</body>
+</html>
